@@ -2,7 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
+import PageTransition from "@/components/PageTransition";
 
 
 const poppins = Poppins({
@@ -24,9 +24,10 @@ export default function RootLayout({ children }) {
         className={`${poppins.className} antialiased  `}
       >
         <Header/>
-        <main> {children}</main>
-       
-       <Footer/>
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
+        <Footer/>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import { CartProvider } from "@/components/CartContext";
+import { AuthProvider } from "@/components/AuthContext";
 
 
 const poppins = Poppins({
@@ -24,13 +25,18 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.className} antialiased  `}
       >
-        <CartProvider>
+
+<AuthProvider> 
+   <CartProvider>
           <Header/>
           <PageTransition>
             <main>{children}</main>
           </PageTransition>
           <Footer/>
         </CartProvider>
+</AuthProvider>
+
+       
       </body>
     </html>
   );

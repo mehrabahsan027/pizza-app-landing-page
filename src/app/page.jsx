@@ -8,6 +8,8 @@ import AboutUs from "@/components/About.jsx";
 import ContactForm from "@/components/ContactForm.jsx";
 
 export default function Home() {
+  console.log('casfsfsff');
+  
   return (
     <main className="w-full">
       <HeroArea />

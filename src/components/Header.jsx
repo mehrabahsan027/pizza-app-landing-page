@@ -5,9 +5,12 @@ import { Menu, ShoppingCart, X, } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "./CartContext";
+import {  useAuth } from "./AuthContext";
 
 
 export default function Header() {
+   const { currentUser } = useAuth()
+    console.log(currentUser?.email)
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname()
   const { cart } = useCart();
@@ -27,9 +30,9 @@ export default function Header() {
      url:'/contact', name:'Contact Us'
   },
     {
-     url:'/', name:'Sign In'
+     url:'/signin', name:'Sign In'
   },
-  
+
 
 ];
 
@@ -38,7 +41,9 @@ const handleMenuOpen = ()=> {
   setMenuOpen(false)
 }
   return (
-    <header className="bg-white shadow-md sticky top-0 left-0 right-0 z-50">
+
+   
+       <header className="bg-white shadow-md sticky top-0 left-0 right-0 z-50">
       <nav className="flex justify-between items-center py-4 px-6 md:px-16 w-full ">
         {/* Logo */}
    
@@ -48,6 +53,9 @@ const handleMenuOpen = ()=> {
           <img src="logo.svg" className="w-full rounded-full" alt="Logo" />
           
           </Link>
+
+ 
+          
         
         </div>
 
@@ -118,5 +126,9 @@ const handleMenuOpen = ()=> {
   </ul>
 </div>
     </header>
+      
+      
+
+   
   );
 }

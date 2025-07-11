@@ -7,9 +7,9 @@ export default function HeroArea() {
         <div>
           
 
-            <h1 className='text-3xl text-center'>Slice Into Something Amazing.</h1>
+            <h1 className='text-3xl text-center md:text-left'>Slice Into Something Amazing.</h1>
 
-            <p className='w-full lg:w-10/12 text-center text-lg my-5'>We're passionate about pizza and our neighborhood. Taste the difference.</p>
+            <p className='w-full lg:w-10/12 text-center md:text-left text-lg my-5'>We're passionate about pizza and our neighborhood. Taste the difference.</p>
 
             <div className='hidden lg:flex justify-evenly items-center my-5 '>
               <img src="185 x 192.png" className='w-[185px] h-[192px] object-cover hover:scale-125 duration-300' alt="pizza" />

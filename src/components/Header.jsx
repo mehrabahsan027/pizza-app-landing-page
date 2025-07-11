@@ -1,15 +1,17 @@
-'use client'
+"use client";
 
 import React, { useState } from "react";
-import { Menu, ShoppingCart, X, } from "lucide-react"; // Lucide icons (you can also use Heroicons or SVG)
+import { Menu, ShoppingCart, X, } from "lucide-react"; 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { useCart } from "./CartContext";
 
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname()
+  const { cart } = useCart();
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   // const links = ["Home", "Menu", "About Us", "Contact Us",'Sign In'];
   const links = [
     {
@@ -55,8 +57,10 @@ const handleMenuOpen = ()=> {
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 font-medium items-center ">
         <div className='text-yellow-700  relative  '>
-        <ShoppingCart  />
-        <p className='-top-5 -right-3 absolute text-black'>10</p>
+          <Link href="/cart">
+            <ShoppingCart />
+            <p className='-top-5 -right-3 absolute text-black'>{cartCount}</p>
+          </Link>
         </div>
           {links.map((item) => (
             <Link  href={item.url} key={item.name}
@@ -92,8 +96,10 @@ const handleMenuOpen = ()=> {
 >
   <ul className="flex flex-col py-3 space-y-4 font-medium items-center">
     <div className="text-yellow-700 relative mt-5">
-      <ShoppingCart />
-      <p className="-top-5 -right-3 absolute text-black">10</p>
+      <Link href="/cart">
+        <ShoppingCart />
+        <p className="-top-5 -right-3 absolute text-black">{cartCount}</p>
+      </Link>
     </div>
     {links.map((item) => (
       <Link

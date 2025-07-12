@@ -59,7 +59,7 @@ export default function ProfilePage() {
   signOut(auth).then(() => {
     // Sign-out successful.
     alert('Logged out successfully!');
-    redirect('/signin')
+    router.push('/signin')
     
   }).catch((error) => {
     // An error happened.

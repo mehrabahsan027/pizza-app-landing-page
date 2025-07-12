@@ -29,12 +29,7 @@ export default function Header() {
     {
      url:'/contact', name:'Contact Us'
   },
-    {
-     url:'/signin', name:'Sign In'
-  },
-
-
-];
+  ];
 
 
 const handleMenuOpen = ()=> {
@@ -75,17 +70,21 @@ const handleMenuOpen = ()=> {
             className={`hover:text-yellow-700 cursor-pointer duration-200 
               
               ${
-              item.name === "Sign In"
-                ? "bg-amber-100 px-5 py-2  rounded-xl  ml-5"
-                : ""
-            }
-              ${
               pathname === item.url ? 'text-yellow-700 font-semibold' : ''
             } `}
              >
               {item.name}
             </Link>
           ))}
+          {currentUser ? (
+            <Link href="/profile" className={`bg-amber-100 px-5 py-2 rounded-xl ml-5 ${pathname === '/profile' ? 'text-yellow-700 font-semibold' : ''}`}>
+              Profile
+            </Link>
+          ) : (
+            <Link href="/signin" className={`bg-amber-100 px-5 py-2 rounded-xl ml-5 ${pathname === '/signin' ? 'text-yellow-700 font-semibold' : ''}`}>
+              Sign In
+            </Link>
+          )}
         </ul>
 
         {/* Hamburger Icon */}
@@ -114,15 +113,28 @@ const handleMenuOpen = ()=> {
         onClick={handleMenuOpen}
         href={item.url}
         key={item.name}
-        className={`hover:text-yellow-700 cursor-pointer duration-150  ${
-          item.name === 'Sign In'
-            ? 'bg-amber-600 px-4 py-2 text-white rounded-xl'
-            : ''
-        }`}
+        className={`hover:text-yellow-700 cursor-pointer duration-150`}
       >
         {item.name}
       </Link>
     ))}
+    {currentUser ? (
+      <Link
+        onClick={handleMenuOpen}
+        href="/profile"
+        className="bg-amber-600 px-4 py-2 text-white rounded-xl"
+      >
+        Profile
+      </Link>
+    ) : (
+      <Link
+        onClick={handleMenuOpen}
+        href="/signin"
+        className="bg-amber-600 px-4 py-2 text-white rounded-xl"
+      >
+        Sign In
+      </Link>
+    )}
   </ul>
 </div>
     </header>

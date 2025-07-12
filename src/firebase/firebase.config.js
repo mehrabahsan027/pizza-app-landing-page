@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCbIJxtAi7nqTN8DWVfyqbSvgrWD0lCchg",
-  authDomain: "pizza-80c3b.firebaseapp.com",
-  projectId: "pizza-80c3b",
-  storageBucket: "pizza-80c3b.firebasestorage.app",
-  messagingSenderId: "162363192555",
-  appId: "1:162363192555:web:ff173ab4fbb9f8f5d2baae"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
 // Initialize Firebase

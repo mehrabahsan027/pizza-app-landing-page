@@ -5,54 +5,119 @@ import { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import app from '@/firebase/firebase.config.js';
 
+import { useRouter } from 'next/navigation';
+
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+
 
 export default function SignUpForm() {
 
     const [signUpForm, setSignUpForm] = useState({ firstName: "", lastName: '', email: '', password: '', confirmPassword: '' });
      const auth = getAuth(app);
+     const db = getFirestore(app); // Initialize Firestore
+
+      const router = useRouter()
 
     const handleChange = (e) => {
         setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (signUpForm.password !== signUpForm.confirmPassword) {
-            alert("Passwords do not match.");
-            return;
-        }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (signUpForm.password !== signUpForm.confirmPassword) {
+    //         alert("Passwords do not match.");
+    //         return;
+    //     }
 
        
-        createUserWithEmailAndPassword(auth, signUpForm.email, signUpForm.password)
-      .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
+    //     createUserWithEmailAndPassword(auth, signUpForm.email, signUpForm.password)
+    //   .then((userCredential) => {
+    //     // Signed up 
+    //     const user = userCredential.user;
        
 
-        sendEmailVerification(user)
-          .then(() => {
-            alert('Verification email sent!');
-          })
-          .catch((error) => {
-            console.error("Error sending email verification:", error);
-          });
+    //     sendEmailVerification(user)
+    //       .then(() => {
+    //         alert('Verification email sent!');
+    //         //reset form
+    //     setSignUpForm({ firstName: "", lastName: '', email: '', password: '', confirmPassword: '' });
+    //         router.push('/')
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error sending email verification:", error);
+    //         //reset form
+    //     setSignUpForm({ firstName: "", lastName: '', email: '', password: '', confirmPassword: '' });
+    //       });
 
      
  
 
 
         
-      })
+    //   })
         
 
-        //reset form
-        setSignUpForm({ firstName: "", lastName: '', email: '', password: '', confirmPassword: '' });
+        
        
-    };
+    // };
+
+
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (signUpForm.password !== signUpForm.confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+    try {
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        signUpForm.email,
+        signUpForm.password
+      );
+      const user = userCredential.user;
+
+      // Store first name and last name in Firestore
+      await setDoc(doc(db, 'users', user.uid), {
+        firstName: signUpForm.firstName,
+        lastName: signUpForm.lastName,
+        email: signUpForm.email,
+        createdAt: new Date(),
+      });
+
+      // Send email verification
+      await sendEmailVerification(user);
+      alert('Verification email sent!');
+
+      // Reset form
+      setSignUpForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+
+      // Redirect to home page
+      router.push('/');
+    } catch (error) {
+      console.error('Error during sign-up:', error);
+      alert(`Error: ${error.message}`);
+      // Reset form on error
+      setSignUpForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+    }
+  };
 
     return (
-        <div className='w-2xl bg-yellow-50 p-5 my-10 rounded-lg shadow-lg'>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className='w-2xl bg-yellow-50 p-5 my-5 rounded-lg shadow-lg'>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <input
                 required
                     type="text"

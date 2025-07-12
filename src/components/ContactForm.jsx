@@ -2,12 +2,21 @@
 
 import React, { useState } from 'react';
 
+
+
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import app from '@/firebase/firebase.config';
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
+
+  const db = getFirestore(app);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,11 +27,22 @@ export default function ContactForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     // You can now use formData.name, formData.email, formData.message
     console.log('Form Submitted:', formData);
+
+    await setDoc(doc(db, 'messages', ), {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        createdAt: new Date(),
+      });
+
+      alert('Thanks for your message')
+
+
 
     // Optional: reset form after submit
     setFormData({
@@ -36,6 +56,7 @@ export default function ContactForm() {
     <div className="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
       <form className="space-y-5 flex flex-col  w-11/12 md:w-1/2 mx-auto" onSubmit={handleSubmit}>
         <input
+        required
           type="text"
           name="name"
           placeholder="Enter Your Name"
@@ -45,6 +66,7 @@ export default function ContactForm() {
         />
 
         <input
+        required
           type="email"
           name="email"
           placeholder="Enter Your Email"
@@ -54,6 +76,7 @@ export default function ContactForm() {
         />
 
         <textarea
+        required
           name="message"
           placeholder="Enter Your Message"
           value={formData.message}

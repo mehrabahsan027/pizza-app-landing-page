@@ -3,8 +3,9 @@ import Link from 'next/link';
 import React from 'react'
 import { useState } from 'react';
 
-import {  getAuth,  signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {  getAuth,  signInWithEmailAndPassword} from "firebase/auth";
 import app from '@/firebase/firebase.config';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -18,6 +19,7 @@ export default function SignInForm() {
     };
 
     const auth = getAuth(app);
+    const router = useRouter()
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,6 +34,8 @@ export default function SignInForm() {
         alert('Login successful!');
         setError('');
          setSignInForm({  email: "", password: "" });
+         router.push('/')
+
 
      
 
@@ -48,9 +52,12 @@ export default function SignInForm() {
        
     };
 
+
+  
+
     return (
-        <div className='w-2xl bg-yellow-50 p-5 my-10 rounded-lg shadow-lg'>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full ">
+        <div className='w-2xl bg-yellow-50 p-5 my-5 rounded-lg shadow-lg'>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full ">
             
              
                 <input

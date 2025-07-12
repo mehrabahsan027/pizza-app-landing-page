@@ -43,6 +43,7 @@ export default function ProfilePage() {
   useEffect(()=> {
 
      handleData()
+    
   },[currentUser])
 
   
@@ -58,6 +59,7 @@ export default function ProfilePage() {
   signOut(auth).then(() => {
     // Sign-out successful.
     alert('Logged out successfully!');
+    redirect('/signin')
     
   }).catch((error) => {
     // An error happened.

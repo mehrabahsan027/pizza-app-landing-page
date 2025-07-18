@@ -10,7 +10,6 @@ import {  useAuth } from "./AuthContext";
 
 export default function Header() {
    const { currentUser } = useAuth()
-    console.log(currentUser?.email)
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname()
   const { cart } = useCart();
@@ -38,7 +37,7 @@ const handleMenuOpen = ()=> {
   return (
 
    
-       <header className="bg-white shadow-md sticky top-0 left-0 right-0 z-50">
+       <header className="bg-gradient-to-t from-amber-100 to-white border-t shadow-md sticky top-0 left-0 right-0 z-50">
       <nav className="flex justify-between items-center py-4 px-6 md:px-16 w-full ">
         {/* Logo */}
    
@@ -77,11 +76,11 @@ const handleMenuOpen = ()=> {
             </Link>
           ))}
           {currentUser ? (
-            <Link href="/profile" className={`bg-amber-100 px-5 py-2 rounded-xl ml-5 ${pathname === '/profile' ? 'text-yellow-700 font-semibold' : ''}`}>
+            <Link href="/profile" className={`bg-amber-100 px-5 py-2 rounded-xl ml-5 outline outline-amber-900 ${pathname === '/profile' ? 'text-yellow-700 font-semibold' : ''}`}>
               Profile
             </Link>
           ) : (
-            <Link href="/signin" className={`bg-amber-100 px-5 py-2 rounded-xl ml-5 ${pathname === '/signin' ? 'text-yellow-700 font-semibold' : ''}`}>
+            <Link href="/signin" className={`bg-amber-100 px-5 py-2 rounded-xl ml-5 outline outline-amber-900 ${pathname === '/signin' ? 'text-yellow-700 font-semibold' : ''}`}>
               Sign In
             </Link>
           )}
@@ -130,7 +129,7 @@ const handleMenuOpen = ()=> {
       <Link
         onClick={handleMenuOpen}
         href="/signin"
-        className="bg-amber-600 px-4 py-2 text-white rounded-xl"
+        className="bg-amber-600 px-4 py-2 text-white rounded-xl outline outline-amber-900"
       >
         Sign In
       </Link>

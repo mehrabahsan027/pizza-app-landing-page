@@ -22,44 +22,6 @@ export default function SignUpForm() {
         setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value });
     };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (signUpForm.password !== signUpForm.confirmPassword) {
-    //         alert("Passwords do not match.");
-    //         return;
-    //     }
-
-       
-    //     createUserWithEmailAndPassword(auth, signUpForm.email, signUpForm.password)
-    //   .then((userCredential) => {
-    //     // Signed up 
-    //     const user = userCredential.user;
-       
-
-    //     sendEmailVerification(user)
-    //       .then(() => {
-    //         alert('Verification email sent!');
-    //         //reset form
-    //     setSignUpForm({ firstName: "", lastName: '', email: '', password: '', confirmPassword: '' });
-    //         router.push('/')
-    //       })
-    //       .catch((error) => {
-    //         console.error("Error sending email verification:", error);
-    //         //reset form
-    //     setSignUpForm({ firstName: "", lastName: '', email: '', password: '', confirmPassword: '' });
-    //       });
-
-     
- 
-
-
-        
-    //   })
-        
-
-        
-       
-    // };
 
 
     const handleSubmit = async (e) => {
@@ -78,7 +40,7 @@ export default function SignUpForm() {
       );
       const user = userCredential.user;
 
-      // Store first name and last name in Firestore
+     
       await setDoc(doc(db, 'users', user.uid), {
         firstName: signUpForm.firstName,
         lastName: signUpForm.lastName,
@@ -102,22 +64,29 @@ export default function SignUpForm() {
       // Redirect to home page
       router.push('/');
     } catch (error) {
-      console.error('Error during sign-up:', error);
-      alert(`Error: ${error.message}`);
-      // Reset form on error
-      setSignUpForm({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      });
+      console.error('Error during sign-up:', error)
+
+      if(error.message == 'Firebase: Error (auth/email-already-in-use).')
+      {
+        alert('Email Already Exists.');
+      }
+      else if (error.message =='Firebase: Password should be at least 6 characters (auth/weak-password).'){
+        alert('Password should be at least 6 characters')
+      }
+      else {
+        alert(`${error.message}`)
+      }
+
+
+      
+     
+      
     }
   };
 
     return (
-        <div className='w-2xl bg-yellow-50 p-5 my-5 rounded-lg shadow-lg'>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <div className='w-11/12 sm:w-6/12 bg-yellow-50 p-5 my-5 rounded-lg shadow-lg'>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6 mb-3">
                 <input
                 required
                     type="text"

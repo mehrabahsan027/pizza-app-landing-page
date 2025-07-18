@@ -31,7 +31,6 @@ export default function ContactForm() {
     e.preventDefault();
 
     // You can now use formData.name, formData.email, formData.message
-    console.log('Form Submitted:', formData);
 
     await setDoc(doc(db, 'messages',formData.email ), {
         name: formData.name,

@@ -11,9 +11,9 @@ export default function SignInPage() {
 
    
     return (
-        <section className='flex flex-col justify-center items-center  w-full bg-yellow-100 min-h-screen '>
+        <section className='flex flex-col  items-center  w-full bg-yellow-100 min-h-screen '>
 
-           <h1 className='text-3xl'>Sign In</h1>
+           <h1 className='text-3xl mt-10'>Sign In</h1>
             <SignInForm/>
 
         </section>

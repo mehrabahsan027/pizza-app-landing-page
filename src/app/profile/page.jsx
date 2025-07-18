@@ -77,11 +77,11 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center  min-h-screen">
-      <h1 className="text-3xl font-bold mb-4 text-red-800">
-        {userData?.firstName}
+    <div className="flex flex-col items-center pt-10  min-h-screen bg-yellow-50">
+      <h1 className="text-3xl font-bold mb-4 text-red-800 capitalize">
+        {userData?.firstName} {userData?.lastName}
       </h1>
-      <p className="text-lg text-gray-600">This is where your profile information will appear.</p>
+      <p className="text-lg text-gray-600 mb-3">{userData?.email}</p>
    
   
     

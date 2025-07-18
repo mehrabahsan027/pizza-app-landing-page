@@ -56,7 +56,7 @@ export default function SignInForm() {
   
 
     return (
-        <div className='w-2xl bg-yellow-50 p-5 my-5 rounded-lg shadow-lg'>
+        <div className='w-11/12 sm:w-6/12 bg-yellow-50 p-5 my-5 rounded-lg shadow-lg'>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full ">
             
              
@@ -66,7 +66,7 @@ export default function SignInForm() {
                     placeholder="Email"
                     value={signInForm.email}
                     onChange={handleChange}
-                    className="p-2 border rounded"
+                    className="p-2 border rounded "
                 />
                 <input
                     type="password"

@@ -24,14 +24,12 @@ export const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
 
-        console.log('auth provider', user);
         setCurrentUser(user)
 
 
 
 
       } else {
-        console.log('no user logged in');
         setCurrentUser(null)
 
       }

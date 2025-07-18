@@ -1,10 +1,16 @@
 "use client";
 import { useCart } from "@/components/CartContext";
 import { Button } from "@/components/ui/button";
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 export default function CartPage() {
   const { cart, clearCart, increaseQuantity, decreaseQuantity } = useCart();
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+   console.log(cart)
+
+ 
+
 
   return (
     <div className="min-h-screen bg-amber-50 py-10 px-4 md:px-16">

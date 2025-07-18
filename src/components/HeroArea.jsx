@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 export default function HeroArea() {
@@ -12,9 +13,13 @@ export default function HeroArea() {
             <p className='w-full lg:w-10/12 text-center md:text-left text-lg my-5'>We're passionate about pizza and our neighborhood. Taste the difference.</p>
 
             <div className='hidden lg:flex justify-evenly items-center my-5 '>
-              <img src="185 x 192.png" className='w-[185px] h-[192px] object-cover hover:scale-125 duration-300' alt="pizza" />
+              {/* Convert img to Next.js Image component */}
+              <Image src="/185 x 192.png" width={185} height={192} className='w-[185px] h-[192px] object-cover hover:scale-125 duration-300' alt="pizza" />
+              <Image src="/147 x 148.png" width={147} height={148} className='w-[147px] h-[148px] object-cover hover:scale-125 duration-300' alt="pizza" />
+              <Image src="/146 x 148.png" width={146} height={148} className='w-[146px] h-[148px] object-cover hover:scale-125 duration-300' alt="pizza" />
+              {/* <img src="185 x 192.png" className='w-[185px] h-[192px] object-cover hover:scale-125 duration-300' alt="pizza" />
               <img src="147 x 148.png" className='w-[147px] h-[148px] object-cover hover:scale-125 duration-300' alt="pizza" />
-              <img src="146 x 148.png" className='w-[146px] h-[148px] object-cover hover:scale-125 duration-300' alt="pizza" />
+              <img src="146 x 148.png" className='w-[146px] h-[148px] object-cover hover:scale-125 duration-300' alt="pizza" /> */}
               {/* <img src="4.png" alt="pizza" /> */}
             </div>
         </div>

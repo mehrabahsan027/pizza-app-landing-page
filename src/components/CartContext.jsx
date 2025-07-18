@@ -1,5 +1,8 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import app from "@/firebase/firebase.config";
+import { useAuth } from "./AuthContext";
 
 const CartContext = createContext();
 
@@ -9,6 +12,62 @@ export function useCart() {
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { currentUser } = useAuth();
+  const db = getFirestore(app);
+
+  console.log('currentUser', currentUser);
+
+  // Load cart from Firestore when user logs in
+  useEffect(() => {
+    const fetchCart = async () => {
+      setIsLoading(true);
+      
+      if (currentUser) {
+        try {
+          const cartDoc = await getDoc(doc(db, "carts", currentUser.uid));
+          if (cartDoc.exists()) {
+            setCart(cartDoc.data().items || []);
+          } else {
+            setCart([]);
+          }
+        } catch (error) {
+          console.error("Error fetching cart:", error);
+          setCart([]);
+        }
+      } else {
+        // Don't clear cart immediately when user becomes null
+        // This prevents clearing cart during logout process
+        setCart([]);
+      }
+      
+      setIsLoading(false);
+    };
+
+    fetchCart();
+  }, [currentUser, db]);
+
+  // Sync cart to Firestore whenever cart changes and user is logged in
+  useEffect(() => {
+    const saveCart = async () => {
+      // Only save if user is logged in, cart has items, and not currently loading
+      if (currentUser && !isLoading) {
+        try {
+          await setDoc(doc(db, "carts", currentUser.uid), { 
+            items: cart,
+            lastUpdated: new Date().toISOString()
+          });
+        } catch (error) {
+          console.error("Error saving cart:", error);
+        }
+      }
+    };
+
+    // Add a small delay to prevent unnecessary saves during rapid state changes
+    const timeoutId = setTimeout(saveCart, 500);
+    
+    return () => clearTimeout(timeoutId);
+  }, [cart, currentUser, db, isLoading]);
 
   // item: {id, title, price, ...}
   function addToCart(item) {
@@ -53,8 +112,19 @@ export function CartProvider({ children }) {
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity }}>
+    <CartContext.Provider 
+      value={{ 
+        cart, 
+        addToCart, 
+        removeFromCart, 
+        clearCart, 
+        increaseQuantity, 
+        decreaseQuantity,
+        isLoading ,
+        setIsLoading
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
-} 
+}

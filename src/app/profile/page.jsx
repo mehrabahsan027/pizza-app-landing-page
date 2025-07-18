@@ -71,7 +71,7 @@ export default function ProfilePage() {
   
  
   if(loader) {
-    return <div className='text-3xl flex justify-center items-center min-h-screen'>Loading... </div>
+    return <div className='text-3xl flex justify-center min-h-screen mt-10'>Loading... </div>
   }
   
 

@@ -46,7 +46,7 @@
 }
 
 :root {
-  --background: oklch(0.9448 0.0099 500); 
+  --background: oklch(0.8309 0.0666 99);
 
   
   --foreground: oklch(0.278 0.047 35); 

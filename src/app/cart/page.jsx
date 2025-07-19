@@ -2,6 +2,7 @@
 import { useCart } from "@/components/CartContext";
 import { Button } from "@/components/ui/button";
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import Link from "next/link";
 
 export default function CartPage() {
   const { cart, clearCart, increaseQuantity, decreaseQuantity } = useCart();
@@ -16,7 +17,15 @@ export default function CartPage() {
     <div className="min-h-screen bg-amber-50 py-10 px-4 md:px-16">
       <h1 className="text-3xl font-bold mb-8 text-center">Your Cart</h1>
       {cart.length === 0 ? (
+        <>
         <p className="text-center text-lg">Your cart is empty.</p>
+        <div className='text-center mt-3'>
+        <Link href='/menus'>
+      <Button className=' text-base md:text-2xl md:py-6' >Order Now! </Button>
+        </Link>
+           </div>
+        </>
+       
       ) : (
         <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
           <ul className="divide-y divide-gray-200">

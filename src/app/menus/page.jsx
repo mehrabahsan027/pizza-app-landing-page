@@ -3,7 +3,7 @@ import React from 'react'
 import { pizzaItems } from '../data';
 
 export default function Menus() {
-  console.log('menus')
+ 
   return (
     <div className=' bg-amber-50 '>
   <h1 className='text-center pt-12 text-3xl underline underline-offset-2'>All Pizzas</h1>

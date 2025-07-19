@@ -16,7 +16,7 @@ export function CartProvider({ children }) {
   const { currentUser } = useAuth();
   const db = getFirestore(app);
 
-  console.log('currentUser', currentUser);
+
 
   // Load cart from Firestore when user logs in
   useEffect(() => {
@@ -25,7 +25,7 @@ export function CartProvider({ children }) {
       
       if (currentUser) {
         try {
-          const cartDoc = await getDoc(doc(db, "carts", currentUser.uid));
+          const cartDoc = await getDoc(doc(db, "carts", currentUser.email));
           if (cartDoc.exists()) {
             setCart(cartDoc.data().items || []);
           } else {
@@ -53,7 +53,7 @@ export function CartProvider({ children }) {
       // Only save if user is logged in, cart has items, and not currently loading
       if (currentUser && !isLoading) {
         try {
-          await setDoc(doc(db, "carts", currentUser.uid), { 
+          await setDoc(doc(db, "carts", currentUser.email), { 
             items: cart,
             lastUpdated: new Date().toISOString()
           });

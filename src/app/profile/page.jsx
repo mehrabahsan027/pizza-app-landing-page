@@ -15,12 +15,12 @@ export default function ProfilePage() {
 
   
 
-  console.log('uid' ,currentUser?.uid);
+  
   
 
 
   const [userData, setUserData] = useState({ firstName: '', lastName: '' });
-  console.log('profile', currentUser)
+ 
 
   const [loader,setLoader] = useState(true)
 

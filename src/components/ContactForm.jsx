@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 
 
 
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+
 
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import app from '@/firebase/firebase.config';
+import { Button } from './ui/button';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -83,12 +84,13 @@ export default function ContactForm() {
           className="rounded-lg h-36 outline outline-amber-300 px-5 py-2 placeholder:text-amber-50"
         ></textarea>
 
-        <button
+        <Button
           type="submit"
-          className="px-5 py-2 bg-amber-600 text-white cursor-pointer"
+        className='lg:text-xl'
+          
         >
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );

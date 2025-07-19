@@ -12,8 +12,8 @@ export default function Header() {
    const { currentUser } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname()
-  const { cart,isLoading,setIsLoading } = useCart();
-  const [loader,setLoader] = useState(true)
+  const { cart} = useCart();
+ 
   
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   // const links = ["Home", "Menu", "About Us", "Contact Us",'Sign In'];

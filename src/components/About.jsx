@@ -13,10 +13,11 @@ export default function AboutUs() {
 
 
     <div className='text-base lg:text-lg w-full lg:w-1/2 space-y-5'>
-      <p>  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat eveniet repellat dolorum, ab corporis sunt!</p>
+      <p>  Our dedication to exceptional pizza is only matched by our pride in serving our beloved neighborhood. We're passionate about what we do, and we believe you'll taste that difference in every bite.</p>
 
-      <p>  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat eveniet repellat dolorum, ab corporis sunt!</p>
-      <p>  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat eveniet repellat dolorum, ab corporis sunt!</p>
+      <p>We're not just making pizza; we're crafting a taste of our neighborhood. Our passion for pizza runs deep, but it's our love for this community that truly sets us apart. Come taste the difference that dedication, quality ingredients, and a whole lot of heart can make in every slice.</p>
+
+    
     
      <div className='text-center mt-10'>
       <Link href='/menus'>

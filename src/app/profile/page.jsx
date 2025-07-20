@@ -1,5 +1,5 @@
  'use client'
-import { useAuth } from '@/components/AuthContext';
+
 import React from 'react';
 import {useState,useEffect} from 'react'
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
@@ -7,6 +7,7 @@ import { getAuth, signOut } from "firebase/auth";
 import app from '@/firebase/firebase.config';
 import { Button } from '@/components/ui/button';
 import { useRouter , redirect} from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 export default function ProfilePage() { 
 

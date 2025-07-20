@@ -4,8 +4,9 @@ import React, { useState,useEffect } from "react";
 import { Menu, ShoppingCart, X, } from "lucide-react"; 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCart } from "./CartContext";
-import {  useAuth } from "./AuthContext";
+import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
+
 
 
 export default function Header() {

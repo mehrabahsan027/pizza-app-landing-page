@@ -1,7 +1,7 @@
 "use client";
-import { useCart } from "@/components/CartContext";
+import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+
 import Link from "next/link";
 
 export default function CartPage() {

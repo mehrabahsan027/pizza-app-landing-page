@@ -12,7 +12,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from './ui/button'
-import { useCart } from './CartContext'
+import { useCart } from '@/context/CartContext';
+
 
 
 export default function FoodItem({ item }) {

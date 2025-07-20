@@ -43,28 +43,28 @@ export const AuthProvider = ({ children }) => {
 
 
   //update user profile
-  const updateUserProfile = async (profile) => {
-    if (currentUser) {
-      try {
-        await updateProfile(currentUser, profile)
-        setCurrentUser(prev => {
-          return { ...prev, ...profile }
-        })
+  // const updateUserProfile = async (profile) => {
+  //   if (currentUser) {
+  //     try {
+  //       await updateProfile(currentUser, profile)
+  //       setCurrentUser(prev => {
+  //         return { ...prev, ...profile }
+  //       })
 
-      } catch (error) {
-        console.error("Error updating profile:", error);
-        throw new Error("Failed to update profile");
+  //     } catch (error) {
+  //       console.error("Error updating profile:", error);
+  //       throw new Error("Failed to update profile");
 
-      }
-
-
+  //     }
 
 
-    }
 
-    else
-      throw new Error("No user is currently logged in");
-  }
+
+  //   }
+
+  //   else
+  //     throw new Error("No user is currently logged in");
+  // }
 
 
  const value = {

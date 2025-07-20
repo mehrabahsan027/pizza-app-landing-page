@@ -3,8 +3,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
-import { CartProvider } from "@/components/CartContext";
-import { AuthProvider } from "@/components/AuthContext";
+import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 
 
 const poppins = Poppins({

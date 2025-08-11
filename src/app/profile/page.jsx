@@ -14,6 +14,9 @@ export default function ProfilePage() {
 
   const {currentUser}  = useAuth()
 
+  console.log( 'current user' + currentUser);
+  
+
   
 
   
@@ -31,7 +34,9 @@ export default function ProfilePage() {
   const db = getFirestore(app);
 
   const handleData = async()=> {
-    const userDocRef = doc(db, 'users', currentUser.uid);
+   
+  if(currentUser) {
+    const userDocRef = doc(db, 'users', currentUser?.uid);
           const userDoc =  await getDoc(userDocRef);
           
           if (userDoc.exists()) {
@@ -39,6 +44,10 @@ export default function ProfilePage() {
             setLoader(false)
           }
 
+
+  }
+
+    
   }
 
   useEffect(()=> {

@@ -37,7 +37,7 @@ export default function FoodItem({ item }) {
   }
 
   return (
-    <Card className='h-[445px] group w-10/12 mx-auto md:w-full flex flex-col  justify-evenly p-5 bg-gradient-to-t from-orange-50 to-yellow-100 shadow-xl'>
+    <Card className='h-[445px] group w-10/12 mx-auto md:w-full flex flex-col  justify-evenly p-5 bg-gradient-to-t from-orange-50 to-yellow-100 shadow-xl fade-up'>
 
       <CardHeader className='lg:group-hover:scale-110 duration-300 '>
         <div className='w-32 h-32 mx-auto  '>

@@ -4,6 +4,59 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+ /* FoodItem.jsx */
+
+ .fade-up {
+  animation: fadeUp;
+ 
+  animation-timeline: view(80% auto)
+ }
+
+ @keyframes fadeUp {
+  from{
+  opacity:0;
+    transform: translateY(10px) 
+  }
+  to{
+   opacity:1;
+    transform: translateY(0) 
+  }
+ }
+
+ /* HeroArea */
+ .auto-rotate {
+  
+  animation: rotation ;
+ 
+  
+  animation-timeline: view();
+
+ }
+ @keyframes rotation{
+  from{
+    
+    transform: rotate(0deg)
+  }
+  to{
+   
+    transform: rotate(360deg)
+  }
+ }
+
+ .home-heading{
+  animation:homeHeading ;
+  animation-timeline: view(50% auto);
+ }
+ @keyframes homeHeading{
+  from{opacity :0}
+  to{opacity:1}
+ }
+
+
+
+
+
  @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

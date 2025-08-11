@@ -11,12 +11,12 @@ export default function Home() {
  
   
   return (
-    <main className="w-full">
+    <main className="w-full ">
       <HeroArea />
 
       {/* Menu Section or Food Items Section */}
       <div className=" bg-amber-100 ">
-        <h1 className="text-center pt-12 text-2xl">Our Popular Pizzas</h1>
+        <h1 className="text-center pt-12 text-2xl home-heading">Our Popular Pizzas</h1>
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  justify-center items-center w-full p-3 md:p-10 space-y-5 md:gap-5 lg:px-16 ">
           {pizzaItems?.slice(0, 6).map((item) => {
             return <FoodItem key={item.id} item={item} />;
